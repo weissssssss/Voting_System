@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vote</title>
+</head>
+<body>
+    <h1>Vote for your preferred candidate</h1>
+    <form action="{{ url_for('voting.vote', option='Candidate A') }}" method="post">
+        <button type="submit">Vote for Candidate A</button>
+    </form>
+    <form action="{{ url_for('voting.vote', option='Candidate B') }}" method="post">
+        <button type="submit">Vote for Candidate B</button>
+    </form>
+    <form action="{{ url_for('voting.vote', option='Candidate C') }}" method="post">
+        <button type="submit">Vote for Candidate C</button>
+    </form>
+</body>
+</html>
