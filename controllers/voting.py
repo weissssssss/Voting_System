@@ -10,11 +10,15 @@ options = ['Candidate A', 'Candidate B', 'Candidate C']
 
 @bp.route('/')
 def index():
-    return render_template('index.html', options=options)
+    return render_template('index.html')
+
+@bp.route('/vote', methods=['GET'])
+def show_vote_page():
+    return render_template('vote.html', options=options)
 
 @bp.route('/vote/<option>', methods=['POST'])
 def vote(option):
-    # Get the user (this is just a placeholder, you should have a proper user authentication system)
+    # Get the user (this is just a placeholder; replace with proper auth)
     user = User.query.first()
     if user:
         vote = Vote(user_id=user.id, option=option)
@@ -25,6 +29,5 @@ def vote(option):
 
 @bp.route('/results')
 def results():
-    # Get vote counts for each option
     vote_counts = {option: Vote.query.filter_by(option=option).count() for option in options}
     return render_template('results.html', vote_counts=vote_counts)

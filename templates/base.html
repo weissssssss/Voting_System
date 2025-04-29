@@ -1,0 +1,194 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting System</title>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --dark-color: #1e1e24;
+            --light-color: #f8f9fa;
+            --accent-color: #4895ef;
+            --text-color: #2b2d42;
+            --text-light: #8d99ae;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            margin: 0;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        
+        nav {
+            margin: 2rem 0;
+            text-align: center;
+            background-color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            width: 90%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            margin: 0 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .content {
+            padding: 2rem 5%;
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .vote-button {
+        /* Basic styling */
+        background: linear-gradient(135deg, #4361ee, #3a0ca3);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 50px;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Hover effects */
+    .vote-button:hover {
+        background: linear-gradient(135deg, #3a0ca3, #4361ee);
+        box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+        transform: translateY(-2px);
+    }
+
+    /* Active/click effect */
+    .vote-button:active {
+        transform: translateY(1px);
+        box-shadow: 0 2px 10px rgba(67, 97, 238, 0.4);
+    }
+
+    /* Optional: Add a shine effect */
+    .vote-button::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -60%;
+        width: 40%;
+        height: 200%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: rotate(30deg);
+        transition: all 0.3s ease;
+    }
+
+    .vote-button:hover::after {
+        left: 120%;
+    }
+
+    /* Focus state for accessibility */
+    .vote-button:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.5);
+    }
+
+    /* Optional: Add an icon */
+    .vote-button.with-icon {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+        
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--dark-color);
+            color: white;
+            margin-top: auto;
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.5rem;
+            }
+            
+            nav a {
+                display: block;
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Online Voting System</h1>
+    </header>
+
+    <nav>
+        <a href="{{ url_for('voting.index') }}">Home</a>
+        <a href="{{ url_for('voting.results') }}">Results</a>
+    </nav>
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Online Voting System | All rights reserved</p>
+    </footer>
+</body>
+</html>

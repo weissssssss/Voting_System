@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from models import db
+from controllers import init_app
 
 # Import blueprints safely
 try:

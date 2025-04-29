@@ -1,0 +1,44 @@
+<!-- templates/vote.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vote</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f8ff;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        .vote-form {
+            margin: 20px auto;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Vote for Your Preferred Candidate</h1>
+
+    {% for option in options %}
+    <form class="vote-form" action="{{ url_for('voting.vote', option=option) }}" method="post">
+        <button type="submit">Vote for {{ option }}</button>
+    </form>
+    {% endfor %}
+</body>
+</html>

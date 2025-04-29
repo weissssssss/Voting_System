@@ -1,0 +1,21 @@
+<!-- templates/results.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Voting Results</h1>
+    <table>
+        <tr>
+            <th>Candidate</th>
+            <th>Votes</th>
+        </tr>
+        {% for candidate, count in vote_counts.items() %}
+        <tr>
+            <td>{{ candidate }}</td>
+            <td>{{ count }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="{{ url_for('voting.index') }}">Back to Home</a>
+{% endblock %}
