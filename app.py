@@ -12,10 +12,14 @@ except ImportError:
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///voting_system.db'  # Use SQLite for simplicity
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Add this to suppress warning
 app.secret_key = 'your_secret_key'
 
 # Initialize the database
 db.init_app(app)
+
+with app.app_context():
+    db.create_all()  # This will create the database file if it doesn't exist
 
 # Register controllers (routes) only if they exist
 if auth_bp:
@@ -23,9 +27,13 @@ if auth_bp:
 if voting_bp:
     app.register_blueprint(voting_bp)
 
-@app.route("/")   # Default home route
-def home():
-    return render_template("home.html")  # You can create templates/home.html later
+@app.route('/testdb')
+def testdb():
+    try:
+        db.session.execute('SELECT 1')
+        return "Database connection working!"
+    except Exception as e:
+        return f"Database error: {str(e)}"
 
 if __name__ == "__main__":
     app.run(debug=True)

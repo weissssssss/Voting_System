@@ -1,9 +1,11 @@
-<!-- templates/results.html -->
 {% extends 'base.html' %}
 
+{% block title %}Results{% endblock %}
+
 {% block content %}
-    <h1>Voting Results</h1>
-    <table>
+<div class="auth-container">
+    <h2>Voting Results</h2>
+    <table class="results-table">
         <tr>
             <th>Candidate</th>
             <th>Votes</th>
@@ -16,6 +18,7 @@
         {% endfor %}
     </table>
 
-    <br>
-    <a href="{{ url_for('voting.index') }}">Back to Home</a>
+    <a href="{{ url_for('voting.index') }}" class="back-link">Back to Home</a>
+</div>
 {% endblock %}
+

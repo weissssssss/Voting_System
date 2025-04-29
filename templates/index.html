@@ -4,8 +4,8 @@
 
 {% block content %}
     <h2>Welcome to the Online Voting System</h2>
-    <p>Click below to cast your vote:</p>
-    <form action="{{ url_for('voting.show_vote_page') }}">
-        <button type="submit" class="vote-button">Vote Now</button>
+    <p>Please log in to cast your vote:</p>
+    <form action="{{ url_for('auth.login') }}">
+        <button type="submit" class="login-button">Login</button>
     </form>
 {% endblock %}

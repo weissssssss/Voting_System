@@ -1,5 +1,7 @@
 from .auth import bp as auth_bp
 from .voting import bp as voting_bp
+from .main import main
+
 
 # Make sure to register the blueprints
 def init_app(app):
